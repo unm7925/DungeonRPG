@@ -5,7 +5,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header("체력 설정")]
     [SerializeField] private int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField] private int currentHealth;
 
     public event Action<int, int> OnHealthChanged;
     public event Action OnDeath;
@@ -17,7 +17,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
+        if (currentHealth <= 0)
+        {
+            currentHealth = maxHealth;
+        }
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
@@ -31,6 +34,20 @@ public class PlayerHealth : MonoBehaviour
                 isInvincible = false;
             }
         }
+        /*
+        플레이어 체력변화로 인한 체력바 변환을 확인하기 위함
+        if (Input.GetKeyDown(KeyCode.Alpha1))  // 키보드 1번
+        {
+            TakeDamage(10);
+            Debug.Log("Test: Take 10 damage");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))  // 키보드 2번
+        {
+            Heal(20);
+            Debug.Log("Test: Heal 20");
+        }
+        */
     }
 
     public void TakeDamage(int damage)
