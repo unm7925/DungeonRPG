@@ -17,7 +17,8 @@ public class HealthUI : MonoBehaviour
 
     void UpdateHealthBar(int currentHealth, int maxHealth)
     {
-        Debug.Log($"HealthBar Update: {currentHealth}/{maxHealth}");
+        // Debug.Log($"HealthBar Update: {currentHealth}/{maxHealth}");
+        // 이벤트 구독이 잘 되어있는지 확인
         if (healthSlider != null)
         {
             healthSlider.maxValue = maxHealth;

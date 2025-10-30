@@ -10,6 +10,9 @@ public class PlayerAttack : MonoBehaviour
     [Header("공격 판정")]
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayer;
+    
+    [Header("데미지 텍스트")] // ← 추가!
+    [SerializeField] private GameObject damageTextPrefab;
 
     private PlayerController playerController;
     private Animator animator;
@@ -48,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetTrigger("Attack");
+            //animator.SetTrigger("Attack");
         }
 
         Vector2 attackDirection = playerController.GetLastMoveDirection();
@@ -62,15 +65,36 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (var enemy in hitEnemies)
         {
-            // EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-            // if (enemyHealth != null)
-            // {
-            //     enemyHealth.TakeDamage(attackDamage);
-            // }
-            Debug.Log($"Attack! Hit range check");
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(attackDamage);
+                ShowDamageText(enemy.transform.position, attackDamage);
+            }
         }
     }
-
+    void ShowDamageText(Vector3 position, int damage)
+    {
+        if (damageTextPrefab == null) return;
+        
+        // 월드 좌표를 스크린 좌표로 변환
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(position);
+        
+        // 데미지 텍스트 생성
+        GameObject damageTextObj = Instantiate(damageTextPrefab, screenPos, Quaternion.identity);
+        
+        // Canvas의 자식으로 설정
+        Canvas canvas = FindObjectOfType<Canvas>();
+        damageTextObj.transform.SetParent(canvas.transform, false);
+        damageTextObj.transform.position = screenPos;
+        
+        // 데미지 값 설정
+        DamageText damageText = damageTextObj.GetComponent<DamageText>();
+        if (damageText != null)
+        {
+            damageText.SetDamage(damage);
+        }
+    }
     public void UpgradeAttack(int amount)
     {
         attackDamage += amount;

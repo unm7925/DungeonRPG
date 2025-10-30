@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleInput();
-        UpdateAnimation();
+        //UpdateAnimation();
     }
 
     void FixedUpdate()
