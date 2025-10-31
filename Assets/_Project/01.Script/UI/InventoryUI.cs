@@ -60,7 +60,7 @@ public class InventoryUI : MonoBehaviour
     }
     
     // 5. UI 업데이트
-    private void UpdateUI()
+    public void UpdateUI()
     {
         // playerInventory의 아이템 리스트 가져오기
         // (일단 public으로 접근하거나, Get 메서드 필요)

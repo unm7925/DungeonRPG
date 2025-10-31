@@ -85,4 +85,13 @@ public class PlayerHealth : MonoBehaviour
 
     public int GetCurrentHealth() => currentHealth;
     public int GetMaxHealth() => maxHealth;
+    
+    public void SetHealth(int hp, int maxHp)
+    {
+        maxHealth = maxHp;
+        currentHealth = hp;
+    
+        // 체력바 UI 업데이트 (이벤트 있으면)
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
 }
