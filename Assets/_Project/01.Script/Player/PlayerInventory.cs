@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     // 1. 인벤토리 (아이템 리스트)
-    private List<ItemData> inventory = new List<ItemData>();
+    public List<ItemData> inventory = new List<ItemData>();
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))  // I 키 누르면

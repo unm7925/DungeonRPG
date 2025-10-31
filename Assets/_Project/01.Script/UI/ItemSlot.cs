@@ -1,0 +1,39 @@
+
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ItemSlot : MonoBehaviour
+{
+    // 1. 아이콘 Image 참조
+    [SerializeField] private Image iconImage;
+    
+    // 2. 현재 슬롯에 있는 아이템
+    private ItemData currentItem;
+    
+    // 3. 슬롯에 아이템 설정
+    public void SetItem(ItemData item)
+    {
+        currentItem = item;
+        // currentItem에 저장
+        
+        // item이 null이 아니면
+        if (item != null)
+        {
+            iconImage.sprite = item.icon;
+            iconImage.enabled = true;
+            // 아이콘 이미지의 sprite를 item.icon으로 설정
+            // 아이콘 활성화 (iconImage.enabled = true)
+        }
+        else // item이 null이면 (빈 슬롯)
+        {
+            iconImage.enabled = false;
+            // 아이콘 비활성화 (iconImage.enabled = false)
+        }
+    }
+    
+    // 4. (선택) 슬롯 비우기
+    public void ClearSlot()
+    {
+        SetItem(null);
+    }
+}
