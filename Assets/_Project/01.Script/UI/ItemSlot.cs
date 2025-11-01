@@ -9,6 +9,7 @@ public class ItemSlot : MonoBehaviour
     
     // 2. 현재 슬롯에 있는 아이템
     private ItemData currentItem;
+    private int slotIndex; 
     
     // 3. 슬롯에 아이템 설정
     public void SetItem(ItemData item)
@@ -35,5 +36,38 @@ public class ItemSlot : MonoBehaviour
     public void ClearSlot()
     {
         SetItem(null);
+    }
+    public void OnSlotClicked()
+    {
+        // 1. 빈 슬롯이면 무시
+        if (currentItem == null)
+        {
+            Debug.Log("빈 슬롯!");
+            return;
+        }
+        
+        // 2. 아이템 타입 확인
+        if (currentItem.itemType == ItemType.HealthPotion)
+        {
+            // 3. 플레이어 찾기
+            PlayerHealth player = FindObjectOfType<PlayerHealth>();
+            PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
+            
+            if (player != null && inventory != null)
+            {
+                // 4. 체력 회복
+                player.Heal(currentItem.effectValue);
+                
+                // 5. 인벤토리에서 제거
+                inventory.RemoveItemAt(slotIndex);
+                
+                // 6. UI 업데이트
+                InventoryUI ui = FindObjectOfType<InventoryUI>();
+                if (ui != null)
+                {
+                    ui.UpdateUI();
+                }
+            }
+        }
     }
 }

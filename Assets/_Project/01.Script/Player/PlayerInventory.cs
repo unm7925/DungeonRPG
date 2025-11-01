@@ -33,4 +33,16 @@ public class PlayerInventory : MonoBehaviour
         // foreach로 inventory를 돌면서
         // 각 아이템의 이름 출력
     }
+    // 아이템 제거
+ 
+// 또는 인덱스로 제거
+    public void RemoveItemAt(int index)
+    {
+        if (index >= 0 && index < inventory.Count)
+        {
+            ItemData item = inventory[index];
+            inventory.RemoveAt(index);
+            Debug.Log($"아이템 제거: {item.itemName}");
+        }
+    }
 }
