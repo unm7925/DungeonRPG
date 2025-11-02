@@ -12327,6 +12327,7 @@ GameObject:
   - component: {fileID: 916765340}
   - component: {fileID: 916765344}
   - component: {fileID: 916765345}
+  - component: {fileID: 916765346}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12447,6 +12448,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 1371934318}
   slotContainer: {fileID: 160160268}
+--- !u!114 &916765346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916765339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19124d6dd5a9c8e44895fd36a635da80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveText: {fileID: 1363868841}
+  clearText: {fileID: 297606784}
+  enemyCountText: {fileID: 1797374376}
+  victoryText: {fileID: 1942951836}
 --- !u!1 &960428123
 GameObject:
   m_ObjectHideFlags: 0
@@ -16341,7 +16358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

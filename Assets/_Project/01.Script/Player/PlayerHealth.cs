@@ -57,16 +57,18 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
 
-        OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {
+            OnHealthChanged?.Invoke(0, maxHealth);
             Die();
         }
         else
         {
             isInvincible = true;
             invincibleTimer = invincibleDuration;
+            
+            OnHealthChanged?.Invoke(currentHealth, maxHealth);
         }
     }
 
@@ -81,6 +83,12 @@ public class PlayerHealth : MonoBehaviour
     {
         OnDeath?.Invoke();
         Debug.Log("Player Died!");
+        
+        GameOverManager gameOverManager = FindObjectOfType<GameOverManager>();
+        if (gameOverManager != null)
+        {
+            gameOverManager.ShowGameOver();
+        }
     }
 
     public int GetCurrentHealth() => currentHealth;
