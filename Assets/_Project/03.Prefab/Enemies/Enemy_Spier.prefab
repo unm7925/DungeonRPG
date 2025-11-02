@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5218552471487840463, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
+      propertyPath: dropData
+      value: 
+      objectReference: {fileID: 11400000, guid: ce45d70397160f142b326b0d35fe723e, type: 2}
     - target: {fileID: 6512240844620273390, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
       propertyPath: m_Name
       value: Enemy_Spier

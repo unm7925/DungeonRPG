@@ -28,7 +28,13 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         Debug.Log($"{gameObject.name} died!");
+        
         OnDeath?.Invoke();  // 이벤트 발동!
+        ItemDropper dropper = GetComponent<ItemDropper>();
+        if (dropper != null)
+        {
+            dropper.TryDropItems();
+        }
         Destroy(gameObject);
     }
     
