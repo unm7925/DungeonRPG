@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
+  healthBarPrefab: {fileID: 3908413208734246943, guid: 5cf229c06fcc9934f82777c0f8bbffb8, type: 3}
 --- !u!114 &3745237592643338921
 MonoBehaviour:
   m_ObjectHideFlags: 0

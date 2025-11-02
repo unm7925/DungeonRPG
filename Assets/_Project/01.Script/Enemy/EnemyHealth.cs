@@ -6,18 +6,40 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 30;
     private int currentHealth;
     
+    [Header("UI")]
+    [SerializeField] private GameObject healthBarPrefab;
+    private EnemyHealthBar healthBar;
+    
     // 이벤트 (적이 죽을 때 알림)
     public event System.Action OnDeath;
     
     void Start()
     {
         currentHealth = maxHealth;
+
+        if (healthBarPrefab != null)
+        {
+            GameObject healthBarObj = Instantiate(healthBarPrefab);
+            healthBar = healthBarObj.GetComponent<EnemyHealthBar>();
+
+            if (healthBar != null)
+            {
+                healthBar.Initialize(transform);
+                healthBar.UpdateHealth(currentHealth,maxHealth);
+            }
+        }
     }
     
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage. HP: {currentHealth}/{maxHealth}");
+        
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealth(currentHealth, maxHealth);
+        }
+        
         HitEffect hitEffect = GetComponent<HitEffect>();
         if (hitEffect != null)
         {
