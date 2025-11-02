@@ -32,6 +32,17 @@ public class PlayerHealth : MonoBehaviour
             if (invincibleTimer <= 0)
             {
                 isInvincible = false;
+                
+                InvincibilityEffect invEffect = GetComponent<InvincibilityEffect>();
+                if (invEffect != null)
+                {
+                    Debug.Log("StopBlinking 호출!");  // ← 추가
+                    invEffect.StopBlinking();
+                }
+                else
+                {
+                    Debug.LogWarning("InvincibilityEffect 못 찾음!");  // ← 추가
+                }
             }
         }
         /*
@@ -70,10 +81,17 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
+           
+            
+            OnHealthChanged?.Invoke(currentHealth, maxHealth);
             isInvincible = true;
             invincibleTimer = invincibleDuration;
             
-            OnHealthChanged?.Invoke(currentHealth, maxHealth);
+            InvincibilityEffect invEffect = GetComponent<InvincibilityEffect>();
+            if (invEffect != null)
+            {
+                invEffect.StartBlinking();
+            }
         }
     }
 

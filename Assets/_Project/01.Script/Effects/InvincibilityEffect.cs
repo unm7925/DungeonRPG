@@ -1,0 +1,81 @@
+
+using System.Collections;
+using UnityEngine;
+
+public class InvincibilityEffect : MonoBehaviour
+{
+    private SpriteRenderer[] spriteRenderers;
+    private Color[] originalColors;
+    
+    [SerializeField] private float minAlpha = 0.3f;
+    [SerializeField] private float blinkSpeed = 0.1f;
+    
+    private Coroutine blinkCoroutine;
+    private bool isBlinking = false;
+
+    private void Start()
+    {
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+        originalColors = new Color[spriteRenderers.Length];
+
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            originalColors[i] = spriteRenderers[i].color;
+        }
+    }
+
+
+    public void StartBlinking()
+    {
+        if (blinkCoroutine != null)
+        {
+            StopCoroutine(blinkCoroutine);
+        }
+
+        isBlinking = true;
+        blinkCoroutine = StartCoroutine(BlinkEffect());
+    }
+
+    public void StopBlinking()
+    {
+        if (blinkCoroutine != null)
+        {
+            StopCoroutine(blinkCoroutine);
+            blinkCoroutine = null;
+        }
+
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            spriteRenderers[i].color = originalColors[i];
+        }
+    }
+
+    private IEnumerator BlinkEffect()
+    {
+        // 0.2초 대기 (피격 이펙트)
+        yield return new WaitForSeconds(0.2f);
+
+        // while(true) 대신 isBlinking 사용
+        while (isBlinking)
+        {
+            SetAlpha(minAlpha);
+            yield return new WaitForSeconds(blinkSpeed);
+
+            SetAlpha(1f);
+            yield return new WaitForSeconds(blinkSpeed);
+        }
+
+        Debug.Log("BlinkEffect 루프 종료!");
+    }
+
+    private void SetAlpha(float alpha)
+    {
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            Color color = spriteRenderers[i].color;
+            color.a = alpha;
+            spriteRenderers[i].color = color;
+        }
+    }
+}
