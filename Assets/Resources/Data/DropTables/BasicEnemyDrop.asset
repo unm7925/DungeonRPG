@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f786ea8cb098f0468a0b7935321eb5d, type: 3}
   m_Name: BasicEnemyDrop
   m_EditorClassIdentifier: 
-  dropItems: []
+  dropItems:
+  - itemData: {fileID: 11400000, guid: 87e5d60e5f4a2ab41a083b8f4cbdb95e, type: 2}
+    dropChance: 0.3
+    itemPrefab: {fileID: 805106685982653275, guid: 64616831ea00ed34a92c99cef40944d0, type: 3}

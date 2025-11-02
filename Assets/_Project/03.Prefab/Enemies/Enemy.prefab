@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1010790766167810469}
   - component: {fileID: 3745237592643338921}
   - component: {fileID: 5218552471487840463}
+  - component: {fileID: 387789890343359421}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -227,3 +228,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropData: {fileID: 11400000, guid: ce45d70397160f142b326b0d35fe723e, type: 2}
   dropRadius: 1
+--- !u!114 &387789890343359421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6512240844620273390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b365bfce95adb40a317889114e896c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.2

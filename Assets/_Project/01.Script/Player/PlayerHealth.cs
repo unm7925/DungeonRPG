@@ -57,6 +57,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
 
+        HitEffect hitEffect = GetComponent<HitEffect>();
+        if (hitEffect != null)
+        {
+            hitEffect.PlayHitEffect();
+        }
 
         if (currentHealth <= 0)
         {

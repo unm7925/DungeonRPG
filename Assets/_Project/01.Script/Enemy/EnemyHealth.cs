@@ -18,7 +18,11 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage. HP: {currentHealth}/{maxHealth}");
-        
+        HitEffect hitEffect = GetComponent<HitEffect>();
+        if (hitEffect != null)
+        {
+            hitEffect.PlayHitEffect();
+        }
         if (currentHealth <= 0)
         {
             Die();
