@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    
 
     private Vector2 moveInput;
     private Vector2 lastMoveDirection = Vector2.down;
@@ -41,11 +42,46 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         moveInput = new Vector2(horizontal, vertical).normalized;
-
+        Vector2 animInput = new Vector2(horizontal, vertical);
+        
+        animator.SetFloat("horizontal", horizontal);
+        animator.SetFloat("vertical", vertical);
+        
         if (moveInput != Vector2.zero)
         {
-            lastMoveDirection = moveInput;
+            lastMoveDirection = animInput;
         }
+
+        HandleAnimation(animInput);
+    }
+
+    private void HandleAnimation(Vector2 moveDir)
+    {
+        float speed = moveDir.magnitude;
+        animator.SetFloat("Speed", speed);
+
+        if (speed > 0)
+        {
+            if (moveDir.x > 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (moveDir.x < 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            
+            animator.SetFloat("horizontal", moveDir.x);
+            animator.SetFloat("vertical", moveDir.y);
+            
+            lastMoveDirection = moveDir; 
+        }
+        else
+        {
+            animator.SetFloat("horizontal", lastMoveDirection.x);
+            animator.SetFloat("vertical", lastMoveDirection.y);
+        }
+        
     }
 
     void Move()
