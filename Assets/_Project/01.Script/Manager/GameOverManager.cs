@@ -21,8 +21,8 @@ public class GameOverManager : MonoBehaviour
         // 1. 패널 활성화
         gameOverPanel.SetActive(true);
         
-        // 2. 게임 일시정지 (선택사항)
-        Time.timeScale = 0f;
+        // 2. 게임 일시정지 (선택사항) 임시
+        //Time.timeScale = 0f;
     }
     
     

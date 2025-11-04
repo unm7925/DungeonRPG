@@ -110,6 +110,9 @@ public class PlayerHealth : MonoBehaviour
         GameOverManager gameOverManager = FindObjectOfType<GameOverManager>();
         if (gameOverManager != null)
         {
+            //임시
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            playerController.enabled = false;
             gameOverManager.ShowGameOver();
         }
     }

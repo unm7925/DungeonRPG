@@ -11,7 +11,9 @@ public class WaveManager : MonoBehaviour
 
     private WaveData currentWave;
     
-    private int spawnedEnemies = 0;
+    private int totalSpawnedEnemies = 0;
+    
+    private int waveSpawnedEnemies = 0;
     
     private int aliveEnemies = 0;
     
@@ -33,7 +35,7 @@ public class WaveManager : MonoBehaviour
     {
         currentWave = waveDataList[currentWaveIndex];
 
-        spawnedEnemies = 0;
+        totalSpawnedEnemies = 0;
         aliveEnemies = 0;
         isWaveActive = true;
         
@@ -46,31 +48,62 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        while (spawnedEnemies < currentWave.enemyCount)
+        int totalEnemies = 0;
+
+        List<int> remainingSpawns = new List<int>();
+        
+        for (int i = 0; i < currentWave.enemies.Count; i++)
         {
-            SpawnEnemy();
+            totalEnemies += currentWave.enemies[i].count;
+            remainingSpawns.Add(currentWave.enemies[i].count);
+        }
+        
+        
+
+        for (int i = 0; i < totalEnemies; i++)
+        {
+            int enemyType = GetRandomEnemyType(remainingSpawns);
+            
+            SpawnEnemy(enemyType);
+            
+            remainingSpawns[enemyType]--;
             
             yield return new WaitForSeconds(currentWave.spawnInterval);
         }
     }
 
-    private void SpawnEnemy()
+    private int GetRandomEnemyType(List<int> remainingSpawns)
+    {
+        List<int> availableType = new List<int>();
+        for (int i = 0; i < remainingSpawns.Count; i++)
+        {
+            if (remainingSpawns[i] > 0)
+            {
+                availableType.Add(i);
+            }
+        }
+        
+        return  availableType[Random.Range(0, availableType.Count)];
+    }
+
+    private void SpawnEnemy(int enemyPrefabsN)
     {
         float randomX = Random.Range(-spawnRangeX, spawnRangeX);
         float randomY = Random.Range(-spawnRangeY, spawnRangeY);
         Vector3 spawnPos = new Vector3(randomX, randomY, 0f);
         
-        GameObject enemy = Instantiate(currentWave.enemyPrefab, spawnPos, Quaternion.identity);
+        GameObject enemy = Instantiate(currentWave.enemies[enemyPrefabsN].enemyPrefab, spawnPos, Quaternion.identity); 
         aliveEnemies++;
-        spawnedEnemies++;
-        
+        totalSpawnedEnemies++;
+        waveSpawnedEnemies++;
         waveUI.UpdateEnemyCount(aliveEnemies);
-        
         EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+        
         if (enemyHealth != null)
-        {
+        { 
             enemyHealth.OnDeath += OnEnemyDeath;
         }
+        
     }
 
     private void OnEnemyDeath()
@@ -80,11 +113,19 @@ public class WaveManager : MonoBehaviour
         Debug.Log(aliveEnemies);
         
         waveUI?.UpdateEnemyCount(aliveEnemies);
-
-        if (aliveEnemies == 0 && spawnedEnemies == currentWave.enemyCount)
+        int enemyAmount = 0;
+        
+        for (int i = 0; i < currentWave.enemies.Count; i++)
+        {
+            enemyAmount += currentWave.enemies[i].count;
+        }
+        
+        if (aliveEnemies == 0 && totalSpawnedEnemies == enemyAmount)
         {
             WaveClear();
+            
         }
+        
     }
 
     private void WaveClear()
