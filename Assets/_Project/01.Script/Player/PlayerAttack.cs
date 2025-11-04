@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (animator != null)
         {
-            //animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack");
         }
 
         Vector2 attackDirection = playerController.GetLastMoveDirection();

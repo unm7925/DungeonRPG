@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1221206811437185945, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7a057c4f82be3f44ca2242b3ed1e97a1, type: 2}
     - target: {fileID: 2578793375640762406, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
       propertyPath: m_Size.x
       value: 0.79
@@ -19,7 +23,7 @@ PrefabInstance:
     - target: {fileID: 2578793375640762406, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5007892337501507138, guid: d2bce5c5c8c09e94badaa87f26ebbe25, type: 3}
+      objectReference: {fileID: 1347016676, guid: ecd3cce90ff87634c91f026a1eb2c257, type: 3}
     - target: {fileID: 2578793375640762406, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -38,15 +42,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3090065425875409630, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3090065425875409630, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3090065425875409630, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3486618362760457126, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -94,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ce45d70397160f142b326b0d35fe723e, type: 2}
     - target: {fileID: 6512240844620273390, guid: 6c17f66f66a7cdc42a6feb80586a24e2, type: 3}
       propertyPath: m_Name
-      value: Enemy_Spier
+      value: Enemy_Warrior
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

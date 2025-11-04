@@ -11,6 +11,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private int attackDamage = 10;
     [SerializeField] private float attackCooldown = 1f;
     
+    [Header("컴포넌트")]
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private Vector2 lastMoveDirection =Vector2.down;
+    
     private Transform player;
     private Rigidbody2D rb;
     private float attackTimer;
@@ -22,7 +27,8 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         // Player 찾기
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
@@ -39,6 +45,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (player == null) return;
         
+        UpdateAnimation();
         // 공격 쿨다운 감소
         attackTimer -= Time.deltaTime;
         
@@ -83,7 +90,27 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
     }
-    
+
+    private void UpdateAnimation()
+    {
+        float speed = rb.velocity.magnitude;
+        animator.SetFloat("Speed", speed);
+
+        if (speed > 0.1f)
+        {
+            Vector2 moveDirection = rb.velocity.normalized;
+            animator.SetFloat("horizontal", moveDirection.x);
+            animator.SetFloat("vertical", moveDirection.y);
+            
+            lastMoveDirection = moveDirection;
+        }
+        else
+        {
+            animator.SetFloat("horizontal", lastMoveDirection.x);
+            animator.SetFloat("vertical", lastMoveDirection.y);
+        }
+    }
+
     void ChasePlayer()
     {
         // 플레이어 방향으로 이동
