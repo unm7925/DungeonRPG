@@ -20,6 +20,8 @@ public class ItemPickup : MonoBehaviour
                 // 6. 아이템 추가
                 inventory.AddItem(itemData);
                 
+                NotificationManager.Instance.ShowNotification(itemData.itemName);
+                
                 // 7. 이 오브젝트 삭제
                 Destroy(this.gameObject);
             }

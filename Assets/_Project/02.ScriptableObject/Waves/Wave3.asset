@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Wave3
   m_EditorClassIdentifier: 
   waveNumber: 3
-  enemyCount: 8
   spawnInterval: 1
   restTime: 5
-  enemyPrefab: {fileID: 8705214786565150196, guid: 1284f2bc3035f514899f428d7027e217, type: 3}
+  enemies:
+  - enemyPrefab: {fileID: 8705214786565150196, guid: 1284f2bc3035f514899f428d7027e217, type: 3}
+    count: 4
+  - enemyPrefab: {fileID: 3039257695596874366, guid: e0fdabc0454762c4e8a62bd9fb32c1d6, type: 3}
+    count: 4
+  randomSpawn: 1
