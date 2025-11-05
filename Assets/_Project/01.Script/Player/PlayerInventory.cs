@@ -5,6 +5,10 @@ public class PlayerInventory : MonoBehaviour
 {
     // 1. 인벤토리 (아이템 리스트)
     public List<ItemData> inventory = new List<ItemData>();
+    
+    public delegate void InventoryChangedDelegate();
+    
+    public event InventoryChangedDelegate OnInventoryChanged;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))  // I 키 누르면
@@ -19,6 +23,8 @@ public class PlayerInventory : MonoBehaviour
         inventory.Add(item);
         // 디버그 로그 출력
         Debug.Log("아이템 획득: " + item.itemName);
+        
+        OnInventoryChanged?.Invoke();
     }
     
     // 3. (선택) 인벤토리 확인 메서드
@@ -43,6 +49,8 @@ public class PlayerInventory : MonoBehaviour
             ItemData item = inventory[index];
             inventory.RemoveAt(index);
             Debug.Log($"아이템 제거: {item.itemName}");
+            
+            OnInventoryChanged?.Invoke();
         }
     }
 }

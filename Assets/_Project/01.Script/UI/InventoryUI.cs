@@ -28,10 +28,16 @@ public class InventoryUI : MonoBehaviour
         // foreach로 slotContainer의 모든 자식 순회
         // GetComponent<ItemSlot>()으로 ItemSlot 가져오기
         // slots.Add()로 리스트에 추가
+        if (playerInventory != null)
+        {
+            playerInventory.OnInventoryChanged += UpdateUI;
+        }
         
         // 인벤토리 패널 비활성화
         inventoryPanel.SetActive(false);
     }
+
+    
     
     // 3. Update에서 I 키 감지
     private void Update()
@@ -58,7 +64,13 @@ public class InventoryUI : MonoBehaviour
             UpdateUI();
         }
     }
-    
+    private void OnDestroy()
+    {
+        if (playerInventory != null)
+        {
+            playerInventory.OnInventoryChanged -= UpdateUI;
+        }
+    }
     // 5. UI 업데이트
     public void UpdateUI()
     {
