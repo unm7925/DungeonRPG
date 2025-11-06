@@ -42,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && attackTimer <= 0)
         {
             Attack();
+            AudioManager.Instance.PlaySFX("videoplayback");
         }
     }
 

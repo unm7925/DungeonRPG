@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage. HP: {currentHealth}/{maxHealth}");
-        
+        AudioManager.Instance.PlaySFX("videoplayback");
         if (healthBar != null)
         {
             healthBar.UpdateHealth(currentHealth, maxHealth);

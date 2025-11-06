@@ -105,6 +105,7 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         OnDeath?.Invoke();
+        AudioManager.Instance.PlaySFX("videoplayback");
         Debug.Log("Player Died!");
         
         GameOverManager gameOverManager = FindObjectOfType<GameOverManager>();
