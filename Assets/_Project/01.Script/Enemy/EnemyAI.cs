@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
     
     [Header("공격 설정")]
     [SerializeField] private int attackDamage = 10;
-    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] public float attackCooldown = 1f;
     
     [Header("컴포넌트")]
     private Animator animator;

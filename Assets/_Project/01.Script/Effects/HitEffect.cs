@@ -39,6 +39,11 @@ public class HitEffect : MonoBehaviour
 
     private IEnumerator FlashEffect()
     {
+        Color[] currentColors = new Color[spriteRenderers.Length];
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            currentColors[i] = spriteRenderers[i].color;
+        }
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
             spriteRenderers[i].color = hitColor;
@@ -50,7 +55,7 @@ public class HitEffect : MonoBehaviour
         // 3. 모든 스프라이트를 원래 색상으로 복구
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
-            spriteRenderers[i].color = originalColors[i];
+            spriteRenderers[i].color = currentColors[i];
         }
     }
 }

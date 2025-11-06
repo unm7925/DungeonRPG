@@ -12,6 +12,9 @@ public class EnemyHealth : MonoBehaviour
     
     // 이벤트 (적이 죽을 때 알림)
     public event System.Action OnDeath;
+
+    public event System.Action OnPhase2;
+    private bool hasEnterPhase2 = false;
     
     void Start()
     {
@@ -38,6 +41,12 @@ public class EnemyHealth : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.UpdateHealth(currentHealth, maxHealth);
+        }
+
+        if (currentHealth <= maxHealth / 2 && !hasEnterPhase2)
+        {
+            hasEnterPhase2 = true;
+            OnPhase2?.Invoke();
         }
         
         HitEffect hitEffect = GetComponent<HitEffect>();
