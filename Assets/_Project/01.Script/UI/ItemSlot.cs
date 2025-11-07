@@ -52,7 +52,7 @@ public class ItemSlot : MonoBehaviour
             // 3. 플레이어 찾기
             PlayerHealth player = FindObjectOfType<PlayerHealth>();
             PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
-            
+            AudioManager.Instance.PlaySFX("useitem");
             if (player != null && inventory != null)
             {
                 // 4. 체력 회복

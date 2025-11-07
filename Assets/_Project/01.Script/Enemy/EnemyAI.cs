@@ -131,6 +131,7 @@ public class EnemyAI : MonoBehaviour
             {
                 playerHealth.TakeDamage(attackDamage);
                 Debug.Log($"{gameObject.name} attacked player!");
+                AudioManager.Instance.PlaySFX("Attack(Sword)");
             }
             attackTimer = attackCooldown;
         }

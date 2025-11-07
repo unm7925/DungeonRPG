@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -37,7 +38,7 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage. HP: {currentHealth}/{maxHealth}");
-        AudioManager.Instance.PlaySFX("videoplayback");
+        AudioManager.Instance.PlaySFX("Enemy-hited");
         if (healthBar != null)
         {
             healthBar.UpdateHealth(currentHealth, maxHealth);
@@ -63,7 +64,7 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         Debug.Log($"{gameObject.name} died!");
-        
+        AudioManager.Instance.PlaySFX("Enemy-Death");
         OnDeath?.Invoke();  // 이벤트 발동!
         ItemDropper dropper = GetComponent<ItemDropper>();
         if (dropper != null)

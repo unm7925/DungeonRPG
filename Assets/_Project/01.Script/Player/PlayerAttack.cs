@@ -11,8 +11,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayer;
     
-    [Header("데미지 텍스트")] // ← 추가!
+    [Header("데미지 텍스트")]
     [SerializeField] private GameObject damageTextPrefab;
+    [SerializeField] private Canvas uiCanvas; // ← Screen Space Overlay 캔버스
 
     private PlayerController playerController;
     private Animator animator;
@@ -30,6 +31,20 @@ public class PlayerAttack : MonoBehaviour
             point.transform.localPosition = Vector3.zero;
             attackPoint = point.transform;
         }
+
+        // 캔버스 없으면 자동으로 찾기 (한 번만 실행)
+        if (uiCanvas == null)
+        {
+            Canvas[] canvases = FindObjectsOfType<Canvas>();
+            foreach (Canvas canvas in canvases)
+            {
+                if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+                {
+                    uiCanvas = canvas;
+                    break;
+                }
+            }
+        }
     }
 
     void Update()
@@ -42,7 +57,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && attackTimer <= 0)
         {
             Attack();
-            AudioManager.Instance.PlaySFX("videoplayback");
+            AudioManager.Instance.PlaySFX("Attack(Sword)");
         }
     }
 
@@ -74,25 +89,22 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-    void ShowDamageText(Vector3 position, int damage)
+    void ShowDamageText(Vector3 worldPosition, int damage)
     {
-        if (damageTextPrefab == null) return;
-        
-        // 월드 좌표를 스크린 좌표로 변환
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(position);
-        
+        if (damageTextPrefab == null || uiCanvas == null) return;
+
         // 데미지 텍스트 생성
-        GameObject damageTextObj = Instantiate(damageTextPrefab, screenPos, Quaternion.identity);
-        
+        GameObject damageTextObj = Instantiate(damageTextPrefab);
+        RectTransform rectTransform = damageTextObj.GetComponent<RectTransform>();
+
         // Canvas의 자식으로 설정
-        Canvas canvas = FindObjectOfType<Canvas>();
-        damageTextObj.transform.SetParent(canvas.transform, false);
-        damageTextObj.transform.position = screenPos;
-        
-        // 데미지 값 설정
+        rectTransform.SetParent(uiCanvas.transform, false);
+
+        // DamageText 초기화
         DamageText damageText = damageTextObj.GetComponent<DamageText>();
         if (damageText != null)
         {
+            damageText.Initialize(worldPosition, uiCanvas);
             damageText.SetDamage(damage);
         }
     }

@@ -35,7 +35,12 @@ public class AudioManager : MonoBehaviour
             audioDict.Add(clip.name, clip);
         }
     }
-    
+
+    private void Start()
+    {
+        PlayBGM("Bgm");
+    }
+
     public void PlaySFX(string clipName)
     {
         

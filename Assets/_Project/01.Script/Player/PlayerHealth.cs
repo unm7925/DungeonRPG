@@ -67,6 +67,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
+        AudioManager.Instance.PlaySFX("player-hited");
 
         HitEffect hitEffect = GetComponent<HitEffect>();
         if (hitEffect != null)
