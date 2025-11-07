@@ -18,4 +18,4 @@ MonoBehaviour:
     itemPrefab: {fileID: 805106685982653275, guid: 64616831ea00ed34a92c99cef40944d0, type: 3}
   - itemData: {fileID: 11400000, guid: 49ba7d625f9854242bcac2f364d80bc1, type: 2}
     dropChance: 0.3
-    itemPrefab: {fileID: 805106685982653275, guid: 64616831ea00ed34a92c99cef40944d0, type: 3}
+    itemPrefab: {fileID: 805106685982653275, guid: c61a42fd5b77da644ba327386d735126, type: 3}
