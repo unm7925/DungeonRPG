@@ -67,7 +67,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
-        AudioManager.Instance.PlaySFX("player-hited");
+        AudioManager.Instance.PlaySFX("player-hited",0.5f);
 
         HitEffect hitEffect = GetComponent<HitEffect>();
         if (hitEffect != null)
@@ -106,7 +106,7 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         OnDeath?.Invoke();
-        AudioManager.Instance.PlaySFX("videoplayback");
+        AudioManager.Instance.PlaySFX("Enemy-death",1f);
         Debug.Log("Player Died!");
         
         GameOverManager gameOverManager = FindObjectOfType<GameOverManager>();

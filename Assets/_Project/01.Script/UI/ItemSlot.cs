@@ -9,7 +9,7 @@ public class ItemSlot : MonoBehaviour
     
     // 2. 현재 슬롯에 있는 아이템
     private ItemData currentItem;
-    private int slotIndex; 
+    [SerializeField] private int slotIndex; 
     
     // 3. 슬롯에 아이템 설정
     public void SetItem(ItemData item)
@@ -46,17 +46,36 @@ public class ItemSlot : MonoBehaviour
             return;
         }
         
+        AudioManager.Instance.PlaySFX("useitem",1f);
+        
         // 2. 아이템 타입 확인
         if (currentItem.itemType == ItemType.HealthPotion)
         {
             // 3. 플레이어 찾기
             PlayerHealth player = FindObjectOfType<PlayerHealth>();
             PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
-            AudioManager.Instance.PlaySFX("useitem");
-            if (player != null && inventory != null)
             {
                 // 4. 체력 회복
                 player.Heal(currentItem.effectValue);
+                
+                // 5. 인벤토리에서 제거
+                inventory.RemoveItemAt(slotIndex);
+                
+                // 6. UI 업데이트
+                InventoryUI ui = FindObjectOfType<InventoryUI>();
+                if (ui != null)
+                {
+                    ui.UpdateUI();
+                }
+            }
+        }
+        else if (currentItem.itemType == ItemType.PowerUpPotion)
+        {
+            PlayerAttack player = FindObjectOfType<PlayerAttack>();
+            PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
+            {
+                // 4. 체력 회복
+                player.UpgradeAttack(currentItem.effectValue);
                 
                 // 5. 인벤토리에서 제거
                 inventory.RemoveItemAt(slotIndex);

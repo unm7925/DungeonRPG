@@ -89,7 +89,7 @@ public class RangedEnemyAI : MonoBehaviour
                 }
                 else if(attackTimer <= 0)
                 {
-                    AudioManager.Instance.PlaySFX("Attack(bow)");
+                    AudioManager.Instance.PlaySFX("Attack(bow)",0.7f);
                     ShootProjectile();
                     
                 }

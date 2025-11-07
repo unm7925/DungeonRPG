@@ -35,18 +35,14 @@ public class AudioManager : MonoBehaviour
             audioDict.Add(clip.name, clip);
         }
     }
+    
 
-    private void Start()
-    {
-        PlayBGM("Bgm");
-    }
-
-    public void PlaySFX(string clipName)
+    public void PlaySFX(string clipName,float volume)
     {
         
         if (audioDict.ContainsKey(clipName))
         {
-            sfxSource.PlayOneShot(audioDict[clipName]);
+            sfxSource.PlayOneShot(audioDict[clipName],volume);
         }
         else
         {

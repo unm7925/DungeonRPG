@@ -17,6 +17,8 @@ public class ItemData : ScriptableObject
 
 public enum ItemType
 {
-    HealthPotion,    // 체력 회복
+    HealthPotion,
+    PowerUpPotion
+    // 체력 회복
     // 나중에 추가: ManaPotion, Weapon, Armor 등
 }

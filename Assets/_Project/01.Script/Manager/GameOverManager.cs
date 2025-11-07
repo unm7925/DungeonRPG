@@ -12,6 +12,7 @@ public class GameOverManager : MonoBehaviour
     {
         // 패널 비활성화
         gameOverPanel.SetActive(false);
+        AudioManager.Instance.PlayBGM("Bgm");
     }
     
     
@@ -20,7 +21,7 @@ public class GameOverManager : MonoBehaviour
     {
         // 1. 패널 활성화
         gameOverPanel.SetActive(true);
-        AudioManager.Instance.PlaySFX("GameOver");
+        AudioManager.Instance.PlaySFX("GameOver",1f);
         AudioManager.Instance.StopBgm();
         
         // 2. 게임 일시정지 (선택사항) 임시

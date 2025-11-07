@@ -21,7 +21,7 @@ public class ItemPickup : MonoBehaviour
                 inventory.AddItem(itemData);
                 
                 NotificationManager.Instance.ShowNotification(itemData.itemName);
-                AudioManager.Instance.PlaySFX("itemPickup");
+                AudioManager.Instance.PlaySFX("itemPickup",1f);
                 // 7. 이 오브젝트 삭제
                 Destroy(this.gameObject);
             }

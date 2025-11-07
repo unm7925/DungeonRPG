@@ -38,7 +38,7 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage. HP: {currentHealth}/{maxHealth}");
-        AudioManager.Instance.PlaySFX("Enemy-hited");
+        AudioManager.Instance.PlaySFX("Enemy-hited",0.5f);
         if (healthBar != null)
         {
             healthBar.UpdateHealth(currentHealth, maxHealth);
@@ -64,7 +64,7 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         Debug.Log($"{gameObject.name} died!");
-        AudioManager.Instance.PlaySFX("Enemy-Death");
+        AudioManager.Instance.PlaySFX("Enemy-Death",0.5f);
         OnDeath?.Invoke();  // 이벤트 발동!
         ItemDropper dropper = GetComponent<ItemDropper>();
         if (dropper != null)

@@ -57,7 +57,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && attackTimer <= 0)
         {
             Attack();
-            AudioManager.Instance.PlaySFX("Attack(Sword)");
+            AudioManager.Instance.PlaySFX("Attack(Sword)",1.5f);
         }
     }
 
