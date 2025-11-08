@@ -36,6 +36,7 @@ public class WaveUIManager : MonoBehaviour
         
         waveText.gameObject.SetActive(false);
         enemyCountText.gameObject.SetActive(false);
+        Time.timeScale = 0;
     }
 
     IEnumerator HideTextAfterDelay(TextMeshProUGUI text, float delay)

@@ -792,6 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98487cf14d2dcbd4eaa44a464bb82538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossDoor: {fileID: 1565442785}
   waveDataList:
   - {fileID: 11400000, guid: e737ed6beb4db3e4dac24e4444749c50, type: 2}
   - {fileID: 11400000, guid: 223a10d83a962b2449062441450f962d, type: 2}
@@ -19158,7 +19159,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 36618132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &544959620
 GameObject:
@@ -57430,7 +57431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1565442786
 Transform:
   m_ObjectHideFlags: 0
@@ -57584,6 +57585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1672581793}
   - component: {fileID: 1672581794}
+  - component: {fileID: 1672581795}
   m_Layer: 3
   m_Name: BossTrigger
   m_TagString: Untagged
@@ -57651,6 +57653,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
+--- !u!114 &1672581795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672581792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bd8f106b879cc4d9805b81c39a90fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossDoor: {fileID: 1565442785}
 --- !u!1 &1797374374
 GameObject:
   m_ObjectHideFlags: 0
@@ -58409,7 +58424,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2800333484800916783, guid: 33ed28c9ea8b70a4ea0cfb283f1ba5c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 519420032}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ed28c9ea8b70a4ea0cfb283f1ba5c8, type: 3}
 --- !u!1001 &7563008954736589647
@@ -58518,7 +58536,6 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 519420032}
   - {fileID: 2054665056}
   - {fileID: 1566501643}
   - {fileID: 663869181}
