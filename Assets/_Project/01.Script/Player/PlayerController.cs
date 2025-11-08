@@ -33,7 +33,15 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
+        if (InventoryUI.Instance.isOpen && InventoryUI.Instance != null)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+        else
+        {
+            Move();
+        }
     }
 
     void HandleInput()

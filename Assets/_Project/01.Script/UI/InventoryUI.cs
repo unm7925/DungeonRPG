@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +7,24 @@ public class InventoryUI : MonoBehaviour
     // 1. 참조
     [SerializeField] private GameObject inventoryPanel;  // 인벤토리 패널
     [SerializeField] private Transform slotContainer;    // 슬롯들의 부모
-    
+    public bool isOpen { get; private set; } = false;
     private List<ItemSlot> slots = new List<ItemSlot>(); // 슬롯 리스트
     private PlayerInventory playerInventory;             // 플레이어 인벤토리
     
+    public static InventoryUI Instance;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // 2. 초기화
     private void Start()
     {
@@ -57,7 +72,7 @@ public class InventoryUI : MonoBehaviour
         bool isActive = inventoryPanel.activeSelf;
         inventoryPanel.SetActive(!isActive); //inventoryPanel의 현재 활성화 상태;
         
-        
+        isOpen = !isActive;
         // 열렸으면 UI 업데이트
         if (!isActive)  // 열렸을 때
         {

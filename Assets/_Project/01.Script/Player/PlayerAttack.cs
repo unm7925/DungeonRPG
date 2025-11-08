@@ -58,6 +58,11 @@ public class PlayerAttack : MonoBehaviour
             attackTimer -= Time.deltaTime;
         }
 
+        if (InventoryUI.Instance.isOpen)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && attackTimer <= 0)
         {
             Attack();

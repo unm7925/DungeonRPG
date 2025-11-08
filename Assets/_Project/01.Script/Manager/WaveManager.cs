@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    [Header("보스 문")]
+    [SerializeField] private GameObject bossDoor;
+    
     [SerializeField] private List<WaveData> waveDataList;
 
     private int currentWaveIndex = 0;
@@ -144,7 +147,7 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
-            GameVictory();
+            bossDoor.SetActive(false);
         }
     }
 
@@ -155,11 +158,4 @@ public class WaveManager : MonoBehaviour
         StartWave();
     }
 
-    private void GameVictory()
-    {
-        
-        waveUI?.ShowVictory();
-        Debug.Log("Game Victory");
-    }
-    
 }
