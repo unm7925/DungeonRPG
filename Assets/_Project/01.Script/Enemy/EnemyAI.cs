@@ -3,28 +3,28 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     [Header("이동 설정")]
-    [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float detectionRange = 5f;  // 탐지 범위
-    [SerializeField] private float attackRange = 1f;      // 공격 범위
+    [SerializeField] protected float moveSpeed = 2f;
+    [SerializeField] protected float detectionRange = 5f;  // 탐지 범위
+    [SerializeField] protected float attackRange = 1f;      // 공격 범위
     
     [Header("공격 설정")]
-    [SerializeField] private int attackDamage = 10;
+    [SerializeField] protected int attackDamage = 10;
     [SerializeField] public float attackCooldown = 1f;
     
     [Header("컴포넌트")]
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
-    private Vector2 lastMoveDirection =Vector2.down;
+    protected  Animator animator;
+    protected  SpriteRenderer spriteRenderer;
+    protected Vector2 lastMoveDirection =Vector2.down;
     
-    private Transform player;
-    private Rigidbody2D rb;
-    private float attackTimer;
+    protected Transform player;
+    protected  Rigidbody2D rb;
+    protected  float attackTimer;
     
     // 상태 (Idle, Chase, Attack)
-    private enum State { Idle, Chase, Attack }
-    private State currentState = State.Idle;
+    protected  enum State { Idle, Chase, Attack }
+    protected  State currentState = State.Idle;
     
-    void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
     
-    void Update()
+    protected virtual void Update()
     {
         if (player == null) return;
         
@@ -91,7 +91,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void UpdateAnimation()
+    protected  void UpdateAnimation()
     {
         float speed = rb.velocity.magnitude;
         animator.SetFloat("Speed", speed);
@@ -111,14 +111,14 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    void ChasePlayer()
+    protected  void ChasePlayer()
     {
         // 플레이어 방향으로 이동
         Vector2 direction = (player.position - transform.position).normalized;
         rb.velocity = direction * moveSpeed;
     }
     
-    void AttackPlayer()
+    protected  void AttackPlayer()
     {
         // 공격 중에는 멈추기
         rb.velocity = Vector2.zero;

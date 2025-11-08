@@ -14,10 +14,14 @@ public class PlayerAttack : MonoBehaviour
     [Header("데미지 텍스트")]
     [SerializeField] private GameObject damageTextPrefab;
     [SerializeField] private Canvas uiCanvas; // ← Screen Space Overlay 캔버스
-
+    
+    [Header("공격 이펙트")]
+    [SerializeField] private GameObject effectPrefab;
+    
     private PlayerController playerController;
     private Animator animator;
     private float attackTimer;
+    
 
     void Awake()
     {
@@ -72,7 +76,16 @@ public class PlayerAttack : MonoBehaviour
 
         Vector2 attackDirection = playerController.GetLastMoveDirection();
         attackPoint.localPosition = attackDirection * 0.5f;
+        
+        if(effectPrefab != null)
+        {
+            float angle = Mathf.Atan2(attackDirection.y,attackDirection.x) * Mathf.Rad2Deg;
 
+            angle += 180f;
+            Quaternion rotation = Quaternion.Euler(0,0,angle);
+            GameObject effect = Instantiate(effectPrefab, attackPoint.position, rotation);
+            Destroy(effect, 0.5f);
+        }
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             attackPoint.position,
             attackRange,

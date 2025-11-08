@@ -16,19 +16,20 @@ public class BossController : MonoBehaviour
     
     [Header("References")]
     [SerializeField] private EnemyHealth bossHealth;
-    [SerializeField] private EnemyAI bossAI;
+    [SerializeField] private BossAI bossAI;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     [Header("Phase 2 Settings")] 
     [SerializeField] private float phase2AttackCooldown = 0.5f;
     [SerializeField] private Color phase2Color = Color.red;
 
+    public BossPhase CurrentPhase => currentPhase;
     private float originalAttackCooldown;
     private Color originalColor;
 
     private void Start()
     {
-        bossAI = GetComponent<EnemyAI>();
+        bossAI = GetComponent<BossAI>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         bossHealth = GetComponent<EnemyHealth>();
         
