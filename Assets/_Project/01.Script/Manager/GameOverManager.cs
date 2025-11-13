@@ -5,7 +5,8 @@ public class GameOverManager : MonoBehaviour
 {
     // === UI 참조 ===
     [SerializeField] private GameObject gameOverPanel;
-    
+
+    [SerializeField] private GameObject bossSpawn;
     
     // === Start - 초기화 ===
     private void Start()
@@ -37,5 +38,20 @@ public class GameOverManager : MonoBehaviour
         
         // 2. 현재 씬 재시작
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
+    public void OnSavePointClicked()
+    {
+        Time.timeScale = 1f;
+        
+        SaveManager.Instance.LoadGame();
+        AudioManager.Instance.PlayBGM("Bgm");
+        gameOverPanel.SetActive(false);
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        playerController.enabled = true;
+        
+        BossAI bossAI = FindObjectOfType<BossAI>();
+        Destroy(bossAI.gameObject);
+        bossSpawn.SetActive(true);
     }
 }

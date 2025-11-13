@@ -63,7 +63,10 @@ public class BossController : MonoBehaviour
         {
             bossHealth.OnPhase2 -= EnterPhase2;
         }
-        WaveUIManager waveUI = FindObjectOfType<WaveUIManager>();
-        waveUI.ShowVictory();
+        if(bossHealth.GetCurrentHealth() <= 0)
+        {
+            WaveUIManager waveUI = FindObjectOfType<WaveUIManager>();
+            waveUI.ShowVictory();
+        }
     }
 }

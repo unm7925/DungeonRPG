@@ -138,4 +138,9 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
+    public int GetPlayerDamage()
+    {
+        return attackDamage;
+    }
 }

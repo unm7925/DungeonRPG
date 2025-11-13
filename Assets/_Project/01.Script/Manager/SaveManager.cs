@@ -10,7 +10,9 @@ public class SaveManager : MonoBehaviour
     private PlayerHealth playerHealth;
     private PlayerInventory playerInventory;
     private InventoryUI inventoryUI;
+    private PlayerAttack playerAttack;
     
+    public WaveManager waveManager;
     // 3. 저장 경로
     private string savePath;
     
@@ -52,7 +54,8 @@ public class SaveManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            SaveGame();
+            //SaveGame();
+            SaveGameDev();
         }
         else if (Input.GetKeyDown(KeyCode.F9))
         {
@@ -61,9 +64,25 @@ public class SaveManager : MonoBehaviour
     }
     
     // 7. 저장
-    public void SaveGame()
+    public void SaveGame(SaveData data)
     {
-        SaveData data = new SaveData(playerHealth, playerInventory);
+        
+        string json = JsonUtility.ToJson(data, true);  // true = 보기 좋게
+        File.WriteAllText(savePath, json);
+        Debug.Log("save 성공");
+        
+        // SaveData 생성 (생성자로)
+        
+        // JsonUtility.ToJson()으로 JSON 변환
+        
+        // File.WriteAllText()로 파일 저장
+        
+        // Debug.Log("저장 완료!")
+    }
+    
+    public void SaveGameDev()
+    {
+        SaveData data = new SaveData(playerHealth, playerInventory,playerAttack,true);
         string json = JsonUtility.ToJson(data, true);  // true = 보기 좋게
         File.WriteAllText(savePath, json);
         Debug.Log("save 성공");
@@ -96,7 +115,7 @@ public class SaveManager : MonoBehaviour
         playerHealth.SetHealth(data.playerHP, data.playerMaxHP);
 
         // 플레이어 체력 복원
-        Vector3 loadedPosition = new Vector3(data.playerPositionX, data.playerPositionY, 0f);
+        Vector2 loadedPosition = data.playerPosition;
         playerHealth.transform.position = loadedPosition;
         // 플레이어 위치 복원
         Debug.Log("=== 인벤토리 불러오기 시작 ===");
@@ -106,6 +125,8 @@ public class SaveManager : MonoBehaviour
         // UI 업데이트
         playerInventory.inventory.Clear();
 
+        waveManager.SetWaveCleared(data.isWaveCleared);
+        
          // 2. 이름으로 ItemData 찾아서 추가
         foreach (string itemName in data.inventoryItemNames)
         {

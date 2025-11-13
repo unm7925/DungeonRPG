@@ -26,12 +26,16 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float spawnRangeY = 10f;
 
     private WaveUIManager waveUI;
-
+    
+    private bool isWaveCleared = false;
+    
     private void Start()
     {
         waveUI = FindObjectOfType<WaveUIManager>();
-        
-        StartWave();
+        if(isWaveCleared == false)
+        {
+            StartWave();
+        }
     }
 
     private void StartWave()
@@ -148,6 +152,7 @@ public class WaveManager : MonoBehaviour
         else
         {
             bossDoor.SetActive(false);
+            isWaveCleared = true;
         }
     }
 
@@ -157,5 +162,10 @@ public class WaveManager : MonoBehaviour
         
         StartWave();
     }
-
+    
+    public void SetWaveCleared(bool cleared)
+    {
+        isWaveCleared = cleared;
+        
+    }
 }
