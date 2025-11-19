@@ -8,7 +8,7 @@ public class GameOverManager : MonoBehaviour
     
     // === UI 참조 ===
     [SerializeField] private GameObject gameOverPanel;
-
+    [SerializeField] private GameObject victoryPanel;
     [SerializeField] private GameObject bossSpawn;
     [SerializeField] private PlayerController playerController;
     
@@ -52,6 +52,16 @@ public class GameOverManager : MonoBehaviour
         AudioManager.Instance.StopBgm();
         
         // 2. 게임 일시정지 (선택사항) 임시
+        Time.timeScale = 0f;
+    }
+
+    public void ShowVictory()
+    {
+        victoryPanel.SetActive(true);
+        //사운드 없음
+        //AudioManager.Instance.PlaySFX("Victory",1f);
+        AudioManager.Instance.StopBgm();
+        
         Time.timeScale = 0f;
     }
     

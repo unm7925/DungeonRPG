@@ -9,7 +9,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform slotContainer;    // 슬롯들의 부모
     public bool isOpen { get; private set; } = false;
     private List<ItemSlot> slots = new List<ItemSlot>(); // 슬롯 리스트
-    private PlayerInventory playerInventory;             // 플레이어 인벤토리
+    [SerializeField] private PlayerInventory playerInventory;             // 플레이어 인벤토리
     
     public static InventoryUI Instance;
 
@@ -28,9 +28,6 @@ public class InventoryUI : MonoBehaviour
     // 2. 초기화
     private void Start()
     {
-        // PlayerInventory 찾기
-        playerInventory = FindObjectOfType<PlayerInventory>(); // 찾기
-
         foreach (Transform child in slotContainer)
         {
             ItemSlot slot = child.GetComponent<ItemSlot>();

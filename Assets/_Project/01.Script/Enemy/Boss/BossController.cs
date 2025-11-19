@@ -33,28 +33,41 @@ public class BossController : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         bossHealth = GetComponent<EnemyHealth>();
         
-        originalAttackCooldown = bossAI.attackCooldown;
-        originalColor = spriteRenderer.color;
-
+        if (bossAI != null)
+        {
+            originalAttackCooldown = bossAI.attackCooldown;
+        }
+        if(spriteRenderer!=null)
+        {
+            originalColor = spriteRenderer.color;
+        }
         if (bossHealth != null)
         {
             bossHealth.OnPhase2 += EnterPhase2;
+            bossHealth.OnDeath += OnBossDeath;
         }
+    }
+
+    private void OnBossDeath()
+    {
+        GameOverManager.Instance?.ShowVictory();
     }
 
     void EnterPhase2()
     {
-        Debug.Log("Enter Phase 2");
+        // 페이즈 2 돌입
         currentPhase = BossPhase.Phase2;
-
-        bossAI.attackCooldown = phase2AttackCooldown;
-        Debug.Log($"공격 쿨타임: {originalAttackCooldown} → {phase2AttackCooldown}");
-    
+        
+        // 공격 쿨타임 변경
+        if(bossAI != null)
+        {
+            bossAI.attackCooldown = phase2AttackCooldown;
+        }
         // 색상 변경
-        Debug.Log($"SpriteRenderer: {spriteRenderer != null}");  // null 체크
-        Debug.Log($"원래 색: {originalColor}");
-        spriteRenderer.color = phase2Color;
-        Debug.Log($"바뀐 색: {spriteRenderer.color}");
+        if(spriteRenderer != null)
+        {
+            spriteRenderer.color = phase2Color;
+        }
     }
 
     private void OnDestroy()
@@ -62,11 +75,7 @@ public class BossController : MonoBehaviour
         if (bossHealth != null)
         {
             bossHealth.OnPhase2 -= EnterPhase2;
-        }
-        if(bossHealth.GetCurrentHealth() <= 0)
-        {
-            WaveUIManager waveUI = FindObjectOfType<WaveUIManager>();
-            waveUI.ShowVictory();
+            bossHealth.OnDeath -= OnBossDeath;
         }
     }
 }

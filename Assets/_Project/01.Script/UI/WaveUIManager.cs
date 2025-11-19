@@ -30,13 +30,10 @@ public class WaveUIManager : MonoBehaviour
         enemyCountText.text = $"Enemies: {count}";
     }
     
-    public void ShowVictory()
+    public void ShowAllClearWaves()
     {
-        victoryText.gameObject.SetActive(true);
-        
         waveText.gameObject.SetActive(false);
         enemyCountText.gameObject.SetActive(false);
-        Time.timeScale = 0;
     }
 
     IEnumerator HideTextAfterDelay(TextMeshProUGUI text, float delay)

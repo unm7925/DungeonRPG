@@ -21,7 +21,7 @@ public class ItemDropper : MonoBehaviour
             // 랜덤 값 생성 (0.0 ~ 1.0)
             float randomValue = Random.Range(0f, 1f);
             
-            // randomValue가 dropChance보다 작으면 드롭!
+            // randomValue가 dropChance보다 작으면 드롭
             if (randomValue < drop.dropChance)
             {
                 SpawnItem(drop);

@@ -15,10 +15,15 @@ public class PlayerHealth : MonoBehaviour
     private PlayerController playerController;
     private float invincibleTimer;
     private bool isInvincible;
-
+    private InvincibilityEffect invEffect;
+    private HitEffect hitEffect;
+    
     void Start()
     {
+        invEffect = GetComponent<InvincibilityEffect>();
+        hitEffect = GetComponent<HitEffect>();
         playerController = GetComponent<PlayerController>();
+        
         if (currentHealth <= 0)
         {
             currentHealth = maxHealth;
@@ -35,7 +40,6 @@ public class PlayerHealth : MonoBehaviour
             {
                 isInvincible = false;
                 
-                InvincibilityEffect invEffect = GetComponent<InvincibilityEffect>();
                 if (invEffect != null)
                 {
                     
@@ -67,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth, 0);
         AudioManager.Instance.PlaySFX("player-hited",0.5f);
 
-        HitEffect hitEffect = GetComponent<HitEffect>();
+        
         if (hitEffect != null)
         {
             hitEffect.PlayHitEffect();
@@ -80,13 +84,10 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-           
-            
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
             isInvincible = true;
             invincibleTimer = invincibleDuration;
             
-            InvincibilityEffect invEffect = GetComponent<InvincibilityEffect>();
             if (invEffect != null)
             {
                 invEffect.StartBlinking();

@@ -25,13 +25,12 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float spawnRangeX = 10f;
     [SerializeField] private float spawnRangeY = 10f;
 
-    private WaveUIManager waveUI;
+    [SerializeField] private WaveUIManager waveUI;
     
     private bool isWaveCleared = false;
     
     private void Start()
     {
-        waveUI = FindObjectOfType<WaveUIManager>();
         if(isWaveCleared == false)
         {
             StartWave();
@@ -107,10 +106,17 @@ public class WaveManager : MonoBehaviour
         EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
         
         if (enemyHealth != null)
-        { 
-            enemyHealth.OnDeath += OnEnemyDeath;
+        {
+            enemyHealth.OnDeath += () => OnEnemyDeathWrapper(enemyHealth);
         }
         
+    }
+
+    private void OnEnemyDeathWrapper(EnemyHealth enemyHealth)
+    {
+        enemyHealth.OnDeath -= () => OnEnemyDeathWrapper(enemyHealth);
+        
+        OnEnemyDeath();
     }
 
     private void OnEnemyDeath()
@@ -153,6 +159,10 @@ public class WaveManager : MonoBehaviour
         {
             bossDoor.SetActive(false);
             isWaveCleared = true;
+            if(waveUI != null)
+            {
+                waveUI.ShowAllClearWaves();
+            }
         }
     }
 

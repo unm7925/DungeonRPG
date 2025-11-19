@@ -33,10 +33,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (InventoryUI.Instance.isOpen && InventoryUI.Instance != null)
+        if (InventoryUI.Instance?.isOpen == true)
         {
             rb.velocity = Vector2.zero;
-            return;
         }
         else
         {
