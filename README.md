@@ -12,12 +12,41 @@
 ---
 
 ## 🎮 게임 소개
-던전을 탐험하며 적 웨이브를 처치하고 보스를 격파하는 2D 액션 RPG입니다.
+- 던전을 탐험하며 적 웨이브를 처치하고 보스를 격파하는 2D 액션 RPG입니다.
+
+  <img src= "https://github.com/user-attachments/assets/9c060067-9fd8-4749-932e-53755c5417dd" width="400" height="300">
 
 ### 조작법
 - `WASD`: 이동
+
+  ![Image](https://github.com/user-attachments/assets/78be8a23-564e-473a-b6f9-6fe9c256a477)
+  
 - `SPACE`: 공격
+
+  ![Image](https://github.com/user-attachments/assets/9b5c83dd-ca83-41d2-9399-077351fc8d0d)
 - `I`: 인벤토리 열기/닫기
+
+  ![Image](https://github.com/user-attachments/assets/4303a7f5-e21c-420e-a32a-e49516b0af74)
+
+### 적
+
+- 원거리
+  
+  ![Image](https://github.com/user-attachments/assets/bb646211-f908-4cd7-9c9a-f336ae0116fb)
+
+- 보스 1페이지
+  
+  ![Image](https://github.com/user-attachments/assets/4e59ec55-365b-4a7c-b3c2-d526d6fcd241)
+
+- 보스 2페이지
+  
+  ![Image](https://github.com/user-attachments/assets/75cb4da7-d36c-4c00-ab80-dab319a9275b)
+
+### 시스템
+- 저장/불러오기
+
+  ![Image](https://github.com/user-attachments/assets/61fec16a-e805-4cf1-852e-ecf2dc57202d)
+
 
 ### 게임 플로우
 1. 적 웨이브를 모두 처치
