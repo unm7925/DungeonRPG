@@ -1,44 +1,46 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealthBar : MonoBehaviour
+namespace _Project._01.Script.UI
 {
-   [SerializeField] private Image fillImage;
-
-   private Transform target;
-   private Camera mainCamera;
-
-   [SerializeField] private Vector3 offset = new Vector3(0f, 1.5f, 0f);
-
-
-   public void Initialize(Transform enemyTransform)
+   public class EnemyHealthBar : MonoBehaviour
    {
-      target = enemyTransform;
-      mainCamera = Camera.main;
-   }
+      [SerializeField] private Image fillImage;
 
-   public void UpdateHealth(int currentHP, int maxHP)
-   {
-      if (fillImage != null)
+      private Transform target;
+      private Camera mainCamera;
+
+      [SerializeField] private Vector3 offset = new Vector3(0f, 1.5f, 0f);
+
+
+      public void Initialize(Transform enemyTransform)
       {
-         fillImage.fillAmount = (float)currentHP / maxHP;
+         target = enemyTransform;
+         mainCamera = Camera.main;
       }
-   }
 
-   private void LateUpdate()
-   {
-      if (target == null)
+      public void UpdateHealth(int currentHP, int maxHP)
       {
-         Destroy(gameObject);
-         return;
+         if (fillImage != null)
+         {
+            fillImage.fillAmount = (float)currentHP / maxHP;
+         }
       }
+
+      private void LateUpdate()
+      {
+         if (target == null)
+         {
+            Destroy(gameObject);
+            return;
+         }
       
-      transform.position = target.position + offset;
+         transform.position = target.position + offset;
 
-      if (mainCamera != null)
-      {
-         transform.rotation = mainCamera.transform.rotation;
+         if (mainCamera != null)
+         {
+            transform.rotation = mainCamera.transform.rotation;
+         }
       }
    }
 }

@@ -1,4 +1,5 @@
 
+using _Project._01.Script.UI;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -17,8 +18,11 @@ public class EnemyHealth : MonoBehaviour
     public event System.Action OnPhase2;
     private bool hasEnterPhase2 = false;
     
+    private HitEffect hitEffect;
     void Start()
     {
+        hitEffect = GetComponent<HitEffect>();
+        
         currentHealth = maxHealth;
 
         if (healthBarPrefab != null)
@@ -50,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
             OnPhase2?.Invoke();
         }
         
-        HitEffect hitEffect = GetComponent<HitEffect>();
+        
         if (hitEffect != null)
         {
             hitEffect.PlayHitEffect();
@@ -64,7 +68,7 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         Debug.Log($"{gameObject.name} died!");
-        AudioManager.Instance.PlaySFX("Enemy-Death",0.5f);
+        AudioManager.Instance.PlaySFX("Enemy-death",0.5f);
         OnDeath?.Invoke();  // 이벤트 발동!
         ItemDropper dropper = GetComponent<ItemDropper>();
         if (dropper != null)

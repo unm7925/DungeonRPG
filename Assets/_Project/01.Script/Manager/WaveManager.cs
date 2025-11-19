@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using _Project._01.Script.UI;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
@@ -104,19 +105,23 @@ public class WaveManager : MonoBehaviour
         waveSpawnedEnemies++;
         waveUI.UpdateEnemyCount(aliveEnemies);
         EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-        
+
         if (enemyHealth != null)
         {
-            enemyHealth.OnDeath += () => OnEnemyDeathWrapper(enemyHealth);
+            System.Action deathHandler = null;
+            deathHandler = () =>
+            {
+                OnEnemyDeath();
+
+                if (enemyHealth != null)
+                {
+                    enemyHealth.OnDeath -= deathHandler;
+                }
+            };
+            
+            enemyHealth.OnDeath += deathHandler;
         }
         
-    }
-
-    private void OnEnemyDeathWrapper(EnemyHealth enemyHealth)
-    {
-        enemyHealth.OnDeath -= () => OnEnemyDeathWrapper(enemyHealth);
-        
-        OnEnemyDeath();
     }
 
     private void OnEnemyDeath()
@@ -146,22 +151,21 @@ public class WaveManager : MonoBehaviour
         isWaveActive = false;
         
         Debug.Log($"Wave {currentWave.waveNumber} clear");
-
-        waveUI?.ShowWaveClear();
         
         if (currentWaveIndex + 1 < waveDataList.Count)
         {
             currentWaveIndex++;
-
+            waveUI?.ShowWaveClear();
             StartCoroutine(RestAndNextWave());
         }
         else
         {
             bossDoor.SetActive(false);
             isWaveCleared = true;
+            
             if(waveUI != null)
             {
-                waveUI.ShowAllClearWaves();
+                waveUI?.ShowAllClearWaves();
             }
         }
     }

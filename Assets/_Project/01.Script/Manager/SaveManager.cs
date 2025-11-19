@@ -1,4 +1,6 @@
+using System.Data;
 using System.IO;
+using _Project._01.Script.UI;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
@@ -7,10 +9,10 @@ public class SaveManager : MonoBehaviour
     public static SaveManager Instance;
     
     // 2. 참조
-    private PlayerHealth playerHealth;
-    private PlayerInventory playerInventory;
-    private InventoryUI inventoryUI;
-    private PlayerAttack playerAttack;
+    [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PlayerInventory playerInventory;
+    [SerializeField] private InventoryUI inventoryUI;
+    [SerializeField] private PlayerAttack playerAttack;
     
     public WaveManager waveManager;
     // 3. 저장 경로
@@ -22,8 +24,8 @@ public class SaveManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            
-            DontDestroyOnLoad(gameObject);
+            // 단일 씬 게임
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -35,32 +37,28 @@ public class SaveManager : MonoBehaviour
         // DontDestroyOnLoad(this) - 씬 전환해도 유지
     }
     
-    // 5. Start - 참조 찾기
+    // Start - 참조 찾기
     private void Start()
     {
-        playerHealth = FindObjectOfType<PlayerHealth>();
-        playerInventory = FindObjectOfType<PlayerInventory>();
-        inventoryUI = FindObjectOfType<InventoryUI>();
-        // playerHealth 찾기
-        // playerInventory 찾기
-        // inventoryUI 찾기
         savePath = Application.persistentDataPath + "/save.json";
         // savePath 설정
         // Application.persistentDataPath + "/save.json"
     }
     
-    // 6. Update - F5,F9 키 감지
+    
     private void Update()
     {
+        /* 저장기능 테스트
         if (Input.GetKeyDown(KeyCode.F5))
         {
             //SaveGame();
-            SaveGameDev();
+            //SaveGameDev();
         }
         else if (Input.GetKeyDown(KeyCode.F9))
         {
             LoadGame();
         }
+        */
     }
     
     // 7. 저장
@@ -80,6 +78,7 @@ public class SaveManager : MonoBehaviour
         // Debug.Log("저장 완료!")
     }
     
+    /* 저장기능 테스트 용 
     public void SaveGameDev()
     {
         SaveData data = new SaveData(playerHealth, playerInventory,playerAttack,true);
@@ -95,6 +94,7 @@ public class SaveManager : MonoBehaviour
         
         // Debug.Log("저장 완료!")
     }
+    */
     
     // 8. 불러오기
     public void LoadGame()
@@ -113,21 +113,22 @@ public class SaveManager : MonoBehaviour
         
         // JsonUtility.FromJson<SaveData>()로 객체 변환
         playerHealth.SetHealth(data.playerHP, data.playerMaxHP);
-
         // 플레이어 체력 복원
+        
         Vector2 loadedPosition = data.playerPosition;
         playerHealth.transform.position = loadedPosition;
         // 플레이어 위치 복원
-        Debug.Log("=== 인벤토리 불러오기 시작 ===");
-        Debug.Log("저장된 아이템 개수: " + data.inventoryItemNames.Count);
-        // 인벤토리 복원 (이름 → ItemData 찾기)
-
+        
+        playerAttack.SetAttackDamage(data.playerDamage);
+        // 플레이어 공격력 복원
+        
+        
         // UI 업데이트
         playerInventory.inventory.Clear();
 
         waveManager.SetWaveCleared(data.isWaveCleared);
         
-         // 2. 이름으로 ItemData 찾아서 추가
+         // 이름으로 ItemData 찾아서 추가
         foreach (string itemName in data.inventoryItemNames)
         {
             // Resources 폴더에서 찾기

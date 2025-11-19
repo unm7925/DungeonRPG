@@ -22,7 +22,8 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // 단일 씬으로 인한 주석 처리
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {

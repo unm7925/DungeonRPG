@@ -13,7 +13,7 @@ public class InvincibilityEffect : MonoBehaviour
     private Coroutine blinkCoroutine;
     private bool isBlinking = false;
 
-    private void Start()
+    private void Awake()
     {
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 
@@ -28,6 +28,12 @@ public class InvincibilityEffect : MonoBehaviour
 
     public void StartBlinking()
     {
+        if (spriteRenderers == null || spriteRenderers.Length == 0)
+        {
+            Debug.LogWarning("SpriteRenderers not initialized!");
+            return;
+        }
+
         if (blinkCoroutine != null)
         {
             StopCoroutine(blinkCoroutine);
@@ -48,7 +54,10 @@ public class InvincibilityEffect : MonoBehaviour
         isBlinking = false;
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
-            spriteRenderers[i].color = originalColors[i];
+            if( i < originalColors.Length && spriteRenderers[i] != null)
+            {
+                spriteRenderers[i].color = originalColors[i];
+            }
         }
     }
 
@@ -66,17 +75,20 @@ public class InvincibilityEffect : MonoBehaviour
             SetAlpha(1f);
             yield return new WaitForSeconds(blinkSpeed);
         }
-
-        Debug.Log("BlinkEffect 루프 종료!");
     }
 
     private void SetAlpha(float alpha)
     {
+        if (spriteRenderers == null) return;
+        
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
-            Color color = spriteRenderers[i].color;
-            color.a = alpha;
-            spriteRenderers[i].color = color;
+            if(spriteRenderers[i] != null)
+            {
+                Color color = spriteRenderers[i].color;
+                color.a = alpha;
+                spriteRenderers[i].color = color;
+            }
         }
     }
 }

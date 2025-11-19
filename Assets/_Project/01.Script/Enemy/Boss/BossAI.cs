@@ -19,6 +19,7 @@ public class BossAI : EnemyAI
     protected override void Start()
     {
         base.Start();
+        
         specailTimer = specialAttackCooldown;
         bossController = GetComponent<BossController>();
     }
@@ -91,7 +92,6 @@ public class BossAI : EnemyAI
                 RaycastHit2D hit_Player = Physics2D.Raycast(transform.position, direction, 1f, LayerMask.GetMask("Player"));
                 if (hit_Player.collider != null)
                 {
-                    PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
                     if (playerHealth != null)
                     {
                         playerHealth.TakeDamage(attackDamage * 2);
@@ -127,12 +127,9 @@ public class BossAI : EnemyAI
 
         foreach (var hit in hits)
         {
-            PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
-
-            if (playerHealth != null)
+            if (hit.gameObject == player.gameObject && playerHealth != null)
             {
                 playerHealth.TakeDamage(attackDamage * 3);
-                Debug.Log("Charge Attack");
             }
         }
 

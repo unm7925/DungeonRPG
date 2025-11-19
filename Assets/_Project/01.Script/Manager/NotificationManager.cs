@@ -24,7 +24,8 @@ public class NotificationManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // 단일 씬 게임
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -52,7 +53,7 @@ public class NotificationManager : MonoBehaviour
 
     private IEnumerator FadeNotification(string message)
     {
-        notificationText.text = $"Get Item : " + message;
+        notificationText.text = $"Get Item " + message;
 
         float elapsed = 0f;
         while (elapsed < fadeInDuration)

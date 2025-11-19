@@ -127,7 +127,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7287063565021125050, guid: 33ed28c9ea8b70a4ea0cfb283f1ba5c8, type: 3}
   m_PrefabInstance: {fileID: 1755949980038757774}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1073255560}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80d9ecb57d3f793458e6c9462523286f, type: 3}
@@ -590,7 +590,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 400, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &185591056
 MonoBehaviour:
@@ -735,9 +735,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1073255560}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
       propertyPath: slotIndex
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 916765345}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1073255569}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 36618129}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1073255561}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -799,6 +819,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c4ffc53e8757d1439bb94c73c98f695, type: 2}
   spawnRangeX: 10
   spawnRangeY: 10
+  waveUI: {fileID: 916765346}
 --- !u!1 &297606782
 GameObject:
   m_ObjectHideFlags: 0
@@ -19522,9 +19543,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1073255560}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
       propertyPath: slotIndex
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 916765345}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1073255569}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 36618129}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1073255561}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19697,9 +19738,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1073255560}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
       propertyPath: slotIndex
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 916765345}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1073255569}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 36618129}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1073255561}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19803,9 +19864,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1073255560}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
       propertyPath: slotIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 916765345}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1073255569}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 36618129}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1073255561}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19909,9 +19990,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1073255560}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
       propertyPath: slotIndex
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 916765345}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1073255569}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 36618129}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1073255561}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20280,6 +20381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 1371934318}
   slotContainer: {fileID: 160160268}
+  playerInventory: {fileID: 1073255561}
 --- !u!114 &916765346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20309,7 +20411,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 868311987}
+  victoryPanel: {fileID: 1942951834}
   bossSpawn: {fileID: 883222937}
+  playerController: {fileID: 1073255568}
 --- !u!1 &960428123
 GameObject:
   m_ObjectHideFlags: 0
@@ -23277,6 +23381,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8a69c6ac131054e9f54fe9c9bc9c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 36618129}
+  playerInventory: {fileID: 1073255561}
+  inventoryUI: {fileID: 916765345}
+  playerAttack: {fileID: 1073255569}
   waveManager: {fileID: 254709657}
 --- !u!4 &1058643623
 Transform:
@@ -23293,6 +23401,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1073255560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6643754786865825086, guid: 33ed28c9ea8b70a4ea0cfb283f1ba5c8, type: 3}
+  m_PrefabInstance: {fileID: 1755949980038757774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1073255561 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6523344378094151137, guid: 33ed28c9ea8b70a4ea0cfb283f1ba5c8, type: 3}
+  m_PrefabInstance: {fileID: 1755949980038757774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073255560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c287ce4b98e902342a43935aa57d7539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1073255568 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9174605549239053347, guid: 33ed28c9ea8b70a4ea0cfb283f1ba5c8, type: 3}
+  m_PrefabInstance: {fileID: 1755949980038757774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073255560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a71e62d1c0eea4087e89bf4498274f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1073255569 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8078091372467144645, guid: 33ed28c9ea8b70a4ea0cfb283f1ba5c8, type: 3}
+  m_PrefabInstance: {fileID: 1755949980038757774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073255560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba73d63e2f9373448ee624891bf82d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1077629855
 GameObject:
   m_ObjectHideFlags: 0
@@ -23519,9 +23665,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1073255560}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
       propertyPath: slotIndex
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 916765345}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1073255569}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 36618129}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1073255561}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23625,9 +23791,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1073255560}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
       propertyPath: slotIndex
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 916765345}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1073255569}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 36618129}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1073255561}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -58247,9 +58433,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1073255560}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
       propertyPath: slotIndex
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 916765345}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1073255569}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 36618129}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1073255561}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -58801,6 +59007,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1073255560}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 916765345}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1073255569}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 36618129}
+    - target: {fileID: 5271479152337304742, guid: 6e86baa7c4783b542b972acdc1245db2, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1073255561}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

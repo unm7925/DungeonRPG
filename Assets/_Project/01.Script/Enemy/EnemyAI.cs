@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     protected Vector2 lastMoveDirection =Vector2.down;
     
     protected Transform player;
+    protected PlayerHealth playerHealth;
     protected  Rigidbody2D rb;
     protected  float attackTimer;
     
@@ -34,6 +35,7 @@ public class EnemyAI : MonoBehaviour
         if (playerObj != null)
         {
             player = playerObj.transform;
+            playerHealth = playerObj.GetComponent<PlayerHealth>();
         }
         else
         {
@@ -126,7 +128,6 @@ public class EnemyAI : MonoBehaviour
         // 쿨다운 끝나면 공격
         if (attackTimer <= 0)
         {
-            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attackDamage);

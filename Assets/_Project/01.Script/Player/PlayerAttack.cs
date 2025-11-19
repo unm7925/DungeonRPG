@@ -1,3 +1,4 @@
+using _Project._01.Script.UI;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -17,6 +18,9 @@ public class PlayerAttack : MonoBehaviour
     
     [Header("공격 이펙트")]
     [SerializeField] private GameObject effectPrefab;
+
+    [Header("할당 캔버스")] 
+    //[SerializeField] private Canvas uiCanvas;
     
     private PlayerController playerController;
     private Animator animator;
@@ -36,7 +40,13 @@ public class PlayerAttack : MonoBehaviour
             attackPoint = point.transform;
         }
 
+        if (uiCanvas == null)
+        {
+            Debug.LogWarning("Ui canvas not assigned in Inspector");
+        }
+
         // 캔버스 없으면 자동으로 찾기 (한 번만 실행)
+        /*
         if (uiCanvas == null)
         {
             Canvas[] canvases = FindObjectsOfType<Canvas>();
@@ -49,6 +59,7 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     void Update()
@@ -58,7 +69,7 @@ public class PlayerAttack : MonoBehaviour
             attackTimer -= Time.deltaTime;
         }
 
-        if (InventoryUI.Instance.isOpen)
+        if (InventoryUI.Instance?.isOpen == true)
         {
             return;
         }
@@ -131,6 +142,11 @@ public class PlayerAttack : MonoBehaviour
     {
         attackDamage += amount;
         Debug.Log($"Attack upgraded! New damage: {attackDamage}");
+    }
+
+    public void SetAttackDamage(int damage)
+    {
+        attackDamage = damage;
     }
 
     void OnDrawGizmosSelected()
