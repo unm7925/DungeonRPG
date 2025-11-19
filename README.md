@@ -2,7 +2,7 @@
 > Unity로 제작한 탑다운 던전 액션 RPG 게임
 
 ## 📦 다운로드
-**[⬇️ 최신 버전 다운로드 (v1.0.0)]** (나중 입력)
+[⬇️ 최신 버전 다운로드 (v1.0.0)](https://github.com/unm7925/DungeonRPG/releases/download/v1.0.0/DungeonRPG_v1.0.zip)
 
 ### 실행 방법
 1. `DungeonRPG_v1.0.zip` 다운로드
