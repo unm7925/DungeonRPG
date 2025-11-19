@@ -45,6 +45,7 @@ public class InvincibilityEffect : MonoBehaviour
             blinkCoroutine = null;
         }
 
+        isBlinking = false;
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
             spriteRenderers[i].color = originalColors[i];

@@ -7,6 +7,11 @@ public class ItemSlot : MonoBehaviour
     // 1. 아이콘 Image 참조
     [SerializeField] private Image iconImage;
     
+    [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PlayerAttack playerAttack;
+    [SerializeField] private PlayerInventory playerInventory;
+    [SerializeField] private InventoryUI inventoryUI;
+    
     // 2. 현재 슬롯에 있는 아이템
     private ItemData currentItem;
     [SerializeField] private int slotIndex; 
@@ -52,41 +57,40 @@ public class ItemSlot : MonoBehaviour
         if (currentItem.itemType == ItemType.HealthPotion)
         {
             // 3. 플레이어 찾기
-            PlayerHealth player = FindObjectOfType<PlayerHealth>();
-            PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
-            {
+            
+            
                 // 4. 체력 회복
-                player.Heal(currentItem.effectValue);
+                playerHealth.Heal(currentItem.effectValue);
                 
                 // 5. 인벤토리에서 제거
-                inventory.RemoveItemAt(slotIndex);
+                playerInventory.RemoveItemAt(slotIndex);
                 
                 // 6. UI 업데이트
-                InventoryUI ui = FindObjectOfType<InventoryUI>();
-                if (ui != null)
+                if (inventoryUI != null)
                 {
-                    ui.UpdateUI();
+                    inventoryUI.UpdateUI();
                 }
-            }
+            
         }
         else if (currentItem.itemType == ItemType.PowerUpPotion)
         {
-            PlayerAttack player = FindObjectOfType<PlayerAttack>();
-            PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
+            
+            
+                // 4. 공격력 증가
+            if(playerAttack != null)
             {
-                // 4. 체력 회복
-                player.UpgradeAttack(currentItem.effectValue);
-                
-                // 5. 인벤토리에서 제거
-                inventory.RemoveItemAt(slotIndex);
-                
-                // 6. UI 업데이트
-                InventoryUI ui = FindObjectOfType<InventoryUI>();
-                if (ui != null)
-                {
-                    ui.UpdateUI();
-                }
+                playerAttack.UpgradeAttack(currentItem.effectValue);
             }
+            // 5. 인벤토리에서 제거
+            if(playerInventory != null)
+            {
+                playerInventory.RemoveItemAt(slotIndex);
+            }
+            // 6. UI 업데이트
+            
+            inventoryUI.UpdateUI();
+            
+            
         }
     }
 }

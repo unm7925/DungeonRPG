@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnBoss : MonoBehaviour
@@ -11,7 +8,10 @@ public class SpawnBoss : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            Instantiate(enemyBoss, transform.position, Quaternion.identity);
+            
+            GameObject boss = Instantiate(enemyBoss, transform.position, Quaternion.identity);
+            
+            GameOverManager.Instance.RegisterBoss(boss.GetComponent<BossAI>());
             gameObject.SetActive(false);
         }
     }

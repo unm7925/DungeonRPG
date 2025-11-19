@@ -76,7 +76,8 @@ public class PlayerAttack : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetTrigger("Attack");
+            // 플레이어 공격 애니메이션 ( null )
+            //animator.SetTrigger("Attack");
         }
 
         Vector2 attackDirection = playerController.GetLastMoveDirection();

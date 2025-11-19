@@ -12,11 +12,13 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("무적 설정")]
     [SerializeField] private float invincibleDuration = 1f;
+    private PlayerController playerController;
     private float invincibleTimer;
     private bool isInvincible;
 
     void Start()
     {
+        playerController = GetComponent<PlayerController>();
         if (currentHealth <= 0)
         {
             currentHealth = maxHealth;
@@ -36,12 +38,8 @@ public class PlayerHealth : MonoBehaviour
                 InvincibilityEffect invEffect = GetComponent<InvincibilityEffect>();
                 if (invEffect != null)
                 {
-                    Debug.Log("StopBlinking 호출!");  // ← 추가
+                    
                     invEffect.StopBlinking();
-                }
-                else
-                {
-                    Debug.LogWarning("InvincibilityEffect 못 찾음!");  // ← 추가
                 }
             }
         }
@@ -107,21 +105,18 @@ public class PlayerHealth : MonoBehaviour
     {
         OnDeath?.Invoke();
         AudioManager.Instance.PlaySFX("Enemy-death",1f);
-        Debug.Log("Player Died!");
         
-        GameOverManager gameOverManager = FindObjectOfType<GameOverManager>();
-        if (gameOverManager != null)
-        {
+        
             //임시
-            PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
             playerController.enabled = false;
-            gameOverManager.ShowGameOver();
-        }
+        } 
+        GameOverManager.Instance.ShowGameOver();
+        
     }
 
-    public int GetCurrentHealth() => currentHealth;
-    public int GetMaxHealth() => maxHealth;
-    
+
     public void SetHealth(int hp, int maxHp)
     {
         maxHealth = maxHp;
@@ -130,4 +125,8 @@ public class PlayerHealth : MonoBehaviour
         // 체력바 UI 업데이트 (이벤트 있으면)
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
+    
+    public int GetCurrentHealth() => currentHealth;
+    public int GetMaxHealth() => maxHealth;
+
 }
